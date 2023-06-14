@@ -36,3 +36,22 @@ cd manifests
 kubectl apply -f namespace.yaml
 kubectl apply -f ./
 ```
+
+
+### Testing deploy
+To test the application, you need to know the public IP of your cluster, you can get the address running
+
+```
+kubectl get svc flask-app-service -n gonzalo.rodriguez
+```
+
+you are going to get an output like the following:
+
+NAME                TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
+flask-app-service   LoadBalancer   10.0.0.1      192.0.2.0        80:30000/TCP   10m
+
+The ip address in the EXTERNAL-IP column is the one that you are going to need to write the curl command.
+The curl command should be something like this:
+```
+curl -X POST -H "Authorization: Basic $(echo -n 'my_client_id:my_client_secret' | base64)" http://<external-ip>/token
+```
