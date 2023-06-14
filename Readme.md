@@ -38,7 +38,7 @@ kubectl apply -f ./
 ```
 
 
-### Testing deploy
+### Testing deployed application
 To test the application, you need to know the public IP of your cluster, you can get the address running
 
 ```
